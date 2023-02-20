@@ -5,9 +5,7 @@ using std::cin;
 template <typename T>
 class Queue
 {
-
     public:
-
     Queue()
     {
         size = 1;
@@ -45,7 +43,6 @@ class Queue
             {
                 queue[i] = queue[i + 1];
             }
-
         }
         else
             cout << "ERROR: There Are no More Elements Left To Pop:\n";
