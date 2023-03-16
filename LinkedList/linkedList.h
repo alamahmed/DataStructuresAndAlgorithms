@@ -3,15 +3,15 @@
 template <typename T>
 class LinkedList
 {
-
     private:
     Node<T> *Head;
-    
+
     public:
     LinkedList()
     {
         Head = new Node<T>;
     }
+    // INSERTION
     void insertAtEnd( T value )
     {
         Node<T> *newNode = new Node<T>( value );
@@ -50,11 +50,45 @@ class LinkedList
                 temp = temp -> next;
                 count++;
             }
-            cout <<  "COUNT IS " << count << "\n";
             newNode -> next = temp -> next;
             temp -> next = newNode;
         }
     }
+    
+    // REMOVE
+    void removeFromStart()
+    {
+        Head = Head -> next;
+    }
+    void removeFromEnd()
+    {
+        Node<T> *temp = Head;
+        while ( temp -> next -> next != NULL )
+        {
+            temp = temp -> next;
+        }
+        temp -> next = NULL;
+    }
+    void removeAtPos(int pos)
+    {
+        int count = 1;
+
+        if( pos > 0 )
+        {
+            Node<T> *temp = Head;
+
+            while( count < pos && temp -> next -> next != NULL )
+            {
+                temp = temp -> next;
+                count++;
+            }
+            temp -> next = temp -> next -> next;
+        }
+
+
+    }
+
+    // PRINT
     void print()
     {
         if( Head != NULL )

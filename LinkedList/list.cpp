@@ -22,8 +22,11 @@ int main()
     li.insertAtPos( -1, 0 );
     li.insertAtPos( 6, -1 );
     li.insertAtPos( 19, 100 );
-
-
+    cout << "\nBEFORE => ";
     li.print();
-
+    li.removeAtPos( 6 );
+    li.removeFromEnd();
+    li.removeFromStart();
+    cout << "\nAFTER => ";
+    li.print();
 }
