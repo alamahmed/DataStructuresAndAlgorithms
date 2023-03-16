@@ -25,6 +25,15 @@ class Queue
         delete queue;
     }
 
+    bool isEmpty()
+    {
+        if(front == -1 && rear == -1)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void push(T value)
     {
         pointer++;
@@ -66,8 +75,6 @@ class Queue
         {
             temp[i] = queue[i];
         }
-        T *tempPtr = queue;
-        delete tempPtr;
         queue = temp;
     }
     
