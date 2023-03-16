@@ -1,7 +1,4 @@
-#include <iostream>
-using std::cout;
-using std::cin;
-
+#include "preProcessors.h"
 template <typename T>
 class Stack
 {
@@ -34,9 +31,9 @@ class Stack
         }
         stack = temp;
     }
-    void getSize()
+    int getSize()
     {
-        cout << len << "\n";
+        return len;
     }
 
     void push(T value)
@@ -63,10 +60,6 @@ class Stack
     void peek()
     {
         cout << stack[pointer] << "\n";
-    }
-    int getLength()
-    {
-        return len;
     }
 
     private:

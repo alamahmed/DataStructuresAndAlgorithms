@@ -24,6 +24,6 @@ int main()
     myStack.peek();
     myStack.pop();
 
-    myStack.getSize();
+    cout << myStack.getSize() << "\n";
 }
 
