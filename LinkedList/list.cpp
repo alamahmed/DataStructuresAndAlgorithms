@@ -1,32 +1,31 @@
-#include "linkedList.h"
-// #include <cstdlib>
-// #include <time.h>
-// srand(time(0));
-// int pos = 1 + ( rand() % totalSize );
+#include "circularLinkedList.h"
+// #include "linkedList.h"
+// #include "doublyLinkedList.h"
 
 int main()
 {
-    int totalSize = 5;
+    int num = 5;
     LinkedList<int> li;
-    
-    for( int i = totalSize; i > 0; i-- )
+    for( int i = num; i > 0; i-- )
     {
         li.insertAtBegining( i );
     }
-    for( int i = totalSize + 1; i <= totalSize * 2; i++ )
+    for( int i = num + 1; i <= num * 2; i++ )
     {
         li.insertAtEnd( i );
     }
-
-    // li.insertAtEnd( 50 );
-    li.insertAtPos( -1, 0 );
-    li.insertAtPos( 6, -1 );
-    li.insertAtPos( 19, 100 );
-    cout << "\nBEFORE => ";
+    // for( int j = 1; j <= 10; j++ )
+    // {
+    //     li.insertAtEnd( 7 );
+    // }
+    
+    li.insertAtPos( -100, -1 );
+    li.insertAtPos( 100, 100 );
+    li.insertAtPos( 2, 47 );
+    // li.deleteAtBegining();
+    // li.deleteAtEnd();
+    // li.deleteAtPos( 2 );
+    // li.deleteATValue( 7 );
     li.print();
-    li.removeAtPos( 6 );
-    li.removeFromEnd();
-    li.removeFromStart();
-    cout << "\nAFTER => ";
-    li.print();
+    return 0;
 }

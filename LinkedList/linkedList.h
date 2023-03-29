@@ -3,16 +3,29 @@
 template <typename T>
 class LinkedList
 {
-    private:
     Node<T> *Head;
-
     public:
+
     LinkedList()
     {
-        Head = new Node<T>;
+        Head = NULL;
     }
     // INSERTION
-    void insertAtEnd( T value )
+    void insertAtBegining( int value )
+    {
+        Node<T> *newNode = new Node<T>( value );
+        if( !Head )
+        {
+            Head = newNode;
+        }
+        else
+        {
+            newNode -> next = Head;
+            Head = newNode;
+        }
+    }
+
+    void insertAtEnd( int value )
     {
         Node<T> *newNode = new Node<T>( value );
         if( !Head )
@@ -22,30 +35,26 @@ class LinkedList
         else
         {
             Node<T> *temp = Head;
-            while(temp -> next != NULL)
+            while( temp -> next != NULL )
             {
                 temp = temp -> next;
             }
             temp -> next = newNode;
         }
     }
-    void insertAtBegining( T value )
-    {
-        Node<T> *newNode = new Node<T>( value );
-        newNode -> next = Head -> next;
-        Head -> next = newNode;
-    }
+
     void insertAtPos( int pos, int value )
     {
-        int count = 1;
-        if( pos < 0 )
+        if( !Head || pos < 1 )
+        {
             insertAtBegining( value );
+        }
         else
         {
-            Node<T> *temp = Head;
             Node<T> *newNode = new Node<T>( value );
-
-            while( count < pos && temp -> next != NULL )
+            Node<T> *temp = Head;
+            int count = 1;
+            while( count < ( pos - 1 ) && temp -> next != NULL )
             {
                 temp = temp -> next;
                 count++;
@@ -54,54 +63,89 @@ class LinkedList
             temp -> next = newNode;
         }
     }
-    
-    // REMOVE
-    void removeFromStart()
-    {
-        Head = Head -> next;
-    }
-    void removeFromEnd()
-    {
-        Node<T> *temp = Head;
-        while ( temp -> next -> next != NULL )
-        {
-            temp = temp -> next;
-        }
-        temp -> next = NULL;
-    }
-    void removeAtPos(int pos)
-    {
-        int count = 1;
 
-        if( pos > 0 )
+    // Delete
+    void deleteAtBegining()
+    {
+        if( Head )
         {
             Node<T> *temp = Head;
-
-            while( count < pos && temp -> next -> next != NULL )
+            delete temp;
+            Head = Head -> next;
+        }
+    }
+    void deleteAtEnd()
+    {
+        if( Head )
+        {
+            Node<T> *temp = Head;
+            while ( temp -> next -> next != NULL )
+            {
+                temp = temp -> next;
+            }
+            Node<T> *temp2 = temp -> next;
+            temp -> next = NULL;
+            delete temp2;
+        }
+    }
+    void deleteAtPos( int pos )
+    {
+        if ( pos < 1 || !Head )
+        {
+            deleteAtBegining();
+        }
+        else
+        {
+            Node<T> *temp = Head;
+            int count = 1;
+            while( count < ( pos - 1 ) && temp -> next != NULL )
             {
                 temp = temp -> next;
                 count++;
             }
+            Node<T> *temp2 = temp -> next;
             temp -> next = temp -> next -> next;
+            delete temp2;
         }
-
-
     }
-
-    // PRINT
-    void print()
+    void deleteATValue( int value )
     {
-        if( Head != NULL )
+        if( !Head )
+        {
+            return;
+        }
+        else
         {
             Node<T> *temp = Head;
-            cout << "{";
-            while ( temp -> next != NULL )
+            while( temp -> next -> next != NULL )
             {
+                if( temp -> next -> data == value )
+                {
+                    Node<T> *temp2 = temp -> next;
+                    temp = temp -> next -> next;
+                    delete temp2;
+                }
                 temp = temp -> next;
-                cout << " " << temp -> data << " ->";
             }
-            cout << "\b\b} \n";
+            if( temp -> next -> data == value )
+            {
+                Node<T> *temp2 = temp -> next;
+                temp -> next = NULL;
+                delete temp2;
+            }
         }
+    }
+    // Print
+    void print()
+    {
+        Node<T> *temp = Head;
+        cout << "{ ";
+        while( temp != NULL )
+        {
+            cout << temp -> data << " -> ";
+            temp = temp -> next;
+        }
+        cout << "\b\b \b\b}\n";
     }
 
 };
