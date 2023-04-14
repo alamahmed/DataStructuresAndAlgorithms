@@ -6,6 +6,7 @@ class Node
     public:
     T data;
     Node *next;
+    Node *prev;
     Node ()
     {
         data = 0;

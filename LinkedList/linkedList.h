@@ -42,7 +42,55 @@ class LinkedList
             temp -> next = newNode;
         }
     }
-
+    void insertToMakeLoop( int pos )
+    {
+        Node<T> *temp = Head;
+        Node<T> *temp2 = Head;
+        int count = 0;
+        while ( temp -> next != NULL )
+        {
+            if( count != pos )
+            {
+                count++;
+                temp2 = temp2 -> next;
+            }
+            temp = temp -> next;
+        }
+        temp -> next = temp2;
+    }
+    
+    bool detectCirculation( Node<T> *&slow, Node<T> *&fast )
+    {
+        do
+        {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+            if( slow == fast )
+            {
+                return true;
+            }
+        } while( slow != fast );
+        return false;
+    }
+    void removeCirculation()
+    {
+        Node<T> *slow = Head, *fast = Head;
+        if(detectCirculation( slow, fast ))
+        {
+            fast = Head;
+            while( slow != fast )
+            {
+                if( slow -> next == fast -> next )
+                {
+                    slow -> next = NULL;
+                    break;
+                }
+                slow = slow -> next;
+                fast = fast -> next;
+            }
+        }   
+    }
+    
     void insertAtPos( int pos, int value )
     {
         if( !Head || pos < 1 )
