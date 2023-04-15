@@ -4,6 +4,14 @@
         "array": "cpp",
         "vector": "cpp",
         "string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp"
     }
 }

@@ -3,7 +3,8 @@
 
 void print( int *arr, int size );
 void selectionSort( int *arr, int size );
-
+void child( int *arr, int size, int indexJ, int &min );
+void parent( int *arr, int size, int indexI );
 int main()
 {
     int size;
@@ -18,16 +19,53 @@ int main()
     }
     cout << "\nArray before Sorting:\n";
     print( arr, size );
-    selectionSort( arr, size );
+
+    parent( arr, size, 0 );
+    cout << "\nArray After Sorting:\n";
+    print( arr, size );
+
+    // selectionSort( arr, size );
 
 }
+
+void child( int *arr, int size, int indexJ, int &min )
+{
+    if( indexJ == size )
+    {
+        return;
+    }
+    else if( arr[ indexJ ] < arr[ min ] )
+    {
+        min = indexJ;
+    }
+    child( arr, size, indexJ + 1, min );
+
+}
+
+void parent( int *arr, int size, int indexI )
+{
+    if( indexI == size )
+    {
+        return;
+    }
+    int min = indexI;
+    
+    child( arr, size, indexI + 1, min );
+    
+    int temp = arr[ indexI ];
+    arr[ indexI ] = arr[ min ];
+    arr[ min ] = temp;
+    
+    parent( arr, size, indexI + 1 );
+}
+
 
 void selectionSort( int *arr, int size )
 {
     for ( int i = 0; i < size - 1; i++ )
     {
         int min = i;
-        for( int j = i; j < size; j++ )
+        for( int j = i + 1; j < size; j++ )
         {
             if ( arr[ j ] < arr[ min ])
             {
